@@ -47,6 +47,11 @@ public class CartServlet extends HttpServlet {
                 }
             } catch (NumberFormatException nfe) {
                 quantity = 1;
+                for(LineItem item: cart.getItems()) {
+                    if(item.getProduct().getCode().equals(productCode)) {
+                        quantity = item.getQuantity()+1;
+                    }
+                }
             }
 
             String path = sc.getRealPath("/WEB-INF/products.txt");
